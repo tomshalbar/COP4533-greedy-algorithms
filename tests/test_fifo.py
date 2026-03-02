@@ -4,6 +4,8 @@ from src.fifo import Fifo as fifo
 
 
 class TestFifo(unittest.TestCase):
+    seed = 4
+    rng = random.Random(seed)
 
     def test_constructor(self):
         f = fifo(2)
@@ -55,7 +57,9 @@ class TestFifo(unittest.TestCase):
         capacity = 100
         request_number = 5000
         register_count = 100
-        requests = [random.randint(0, register_count) for _ in range(request_number)]
+        requests = [
+            TestFifo.rng.randint(0, register_count) for _ in range(request_number)
+        ]
         ground_truth_cache = list()
         ground_truth_results = list()
         for r in requests:
