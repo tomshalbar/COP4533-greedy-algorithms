@@ -45,12 +45,12 @@ def calculate_stats(results):
 
 
 def main():
-    for i, path in enumerate(input_dir_path.iterdir()):
+    for path in input_dir_path.iterdir():
         cache_capacity, requests = read_file(path)
         caches = [fifo(cache_capacity), lru(cache_capacity)]
         miss_hit_result = test_caches(caches, requests)
         miss_hit_stats = calculate_stats(miss_hit_result)
-        print(f"File {i} (miss, hit): {miss_hit_stats}")
+        print(f"{path.name} (miss, hit): {miss_hit_stats}")
 
 
 if __name__ == "__main__":
