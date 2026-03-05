@@ -1,6 +1,7 @@
 from pathlib import Path
 from src.fifo import Fifo as fifo
 from src.lru import Lru as lru
+from src.optff import OPTFF as optff
 
 input_dir_path = Path("./inputs/")
 
@@ -55,3 +56,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
