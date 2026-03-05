@@ -18,7 +18,8 @@ def read_file(path: Path):
         return cache_capacity, requests
 
 
-def test_caches(caches, requests):
+def test_fifo_and_lru_caches(caches, requests):
+    """ Gets the hits and misses from the lru and fifo cache eviction policies """
     results = dict()
     for cache in caches:
         results[cache.__class__.__name__] = []
@@ -29,7 +30,8 @@ def test_caches(caches, requests):
     return results
 
 
-def calculate_stats(results):
+def calculate_fifo_and_lru_stats(results):
+    """ Sums up the hits and misses from the lru and fifo cache eviction policies """
     stats = dict()
     for cache in results:
         miss = 0
@@ -40,7 +42,8 @@ def calculate_stats(results):
             else:
                 hit += 1
 
-        stats[cache] = [miss, hit]
+        #stats[cache] = [miss, hit]
+        stats[cache] = miss
 
     return stats
 
@@ -48,10 +51,11 @@ def calculate_stats(results):
 def main():
     for i, path in enumerate(input_dir_path.iterdir()):
         cache_capacity, requests = read_file(path)
-        caches = [fifo(cache_capacity), lru(cache_capacity)]
-        miss_hit_result = test_caches(caches, requests)
-        miss_hit_stats = calculate_stats(miss_hit_result)
-        print(f"File {i} (miss, hit): {miss_hit_stats}")
+        caches = [fifo(cache_capacity), lru(cache_capacity), optff(cache_capacity, requests)]
+        fifo_and_lru_miss_hit_results = test_fifo_and_lru_caches(caches[:-1], requests)
+        miss_stats = calculate_fifo_and_lru_stats(fifo_and_lru_miss_hit_results)
+        miss_stats['OPTFF'] = caches[-1].process_requests()
+        print(f"File {i} (miss): {miss_stats}")
 
 
 if __name__ == "__main__":

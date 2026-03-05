@@ -46,10 +46,11 @@ class OPTFF:
             if request in self.cache:
                 continue
             else:
+                num_misses += 1  # Counter goes up if the item is not already in the cache (even if its empty)
+
                 if len(self.cache) == self.capacity:
                     # The cache is full, perform the algorithm to remove the most optimal request from the cache
                     self.remove_request_from_cache()
-                    num_misses += 1
 
                 self.cache.add(request)
 
