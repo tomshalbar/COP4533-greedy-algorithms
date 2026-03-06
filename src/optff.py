@@ -40,8 +40,8 @@ class OPTFF:
             Returns the number of cache misses
         """
         num_misses: int = 0
-        for request in self.requests:
-            self.requests.pop(0)  # Remove the current request being processed so that the algorithm does not take it into account
+        while self.requests:
+            request = self.requests.pop(0)  # Remove the current request being processed so that the algorithm does not take it into account
 
             if request in self.cache:
                 continue
