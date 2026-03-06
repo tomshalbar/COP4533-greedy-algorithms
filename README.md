@@ -33,7 +33,7 @@ Example files are generated using a gaussian distribution to simulate real cache
 
 a. OPTFF had the fewest misses for each input file.
 
-b. For our datasets, which are discrete Gaussian-based, we tried to reproduce register access requests, which naturally have some more popular registers and some less. FIFO and LRU have about the same effectiveness for a small cache size (<10), but FIFO was better for a large cache size (> 20). 
+b. For our datasets, which are discrete Gaussian-based, we tried to reproduce register access requests, which naturally have some more popular registers and some less. FIFO and LRU have about the same effectiveness for a small cache size (<10), but LRU was better for a large cache size (> 20). 
 
 #### 2.
 There should be an infinite number of sequences for which OPTFF incurs strictly fewer misses than LRU or FIFO.
