@@ -64,17 +64,17 @@ b. 5, 8, 12, 534, 31, 32, 12, 19, 432, 234, 2, 1, 5, 8, 12, 534, 31, 32, 12, 19,
 #### 3.
 Assume that there is an optimal algorithm O, that produces a different cache sequence than Belady's Farthest-in-Future algorithm, B.
 
-Assume we have a requests sequence R = r<sub>1</sub>, r<sub>2</sub>, ..., r<sub>n</sub>, and that the cache size is m.
+Assume we have a requests sequence R = r<sub>1</sub>, r<sub>2</sub>, ..., r<sub>n</sub>, and that the cache size is k.
 
 Let O = o<sub>1</sub>, o<sub>2</sub>, ..., o<sub>n</sub> be the sequence of caches produced by optimal algorithm O after each request.
 Let B = b<sub>1</sub>, b<sub>2</sub>, ..., b<sub>n</sub> be the sequence of caches produced by OPTFF algorithm B after each request.
 
-Since the caches do not fill until r<sub>m</sub>, O and B are by definition equivalent until that part, so
-O' = b<sub>1</sub>, b<sub>2</sub>, ..., b<sub>m</sub>, o<sub>m+1</sub>, ..., o<sub>n</sub>
+Since the caches do not fill until r<sub>k</sub>, O and B are by definition equivalent until that part, so
+O' = b<sub>1</sub>, b<sub>2</sub>, ..., b<sub>k</sub>, o<sub>k+1</sub>, ..., o<sub>n</sub>
 
-Let r<sub>m+1</sub> be the first time O and B differ.
+Let r<sub>m</sub> be the last cache that O and B agree on.
 
-At request r<sub>m+1</sub>, an element will be evicted from the cache. Let *e* be the element that OPTFF decided to evict, resulting in cache b<sub>m+1</sub>.
+At request r<sub>m+1</sub>, the first time O and B differ, an element will be evicted from the cache. Let *e* be the element that OPTFF decided to evict, resulting in cache b<sub>m+1</sub>.
 
 a) If *e* never occurs again in requests, then removing it will not lead to any more misses in the future, therefore we can exchange o<sub>m+1</sub> with b<sub>m+1</sub> in O without incurring any more misses.
 
