@@ -37,11 +37,11 @@ def get_cache_misses(cache: lru | fifo | optff, requests: list[int] | None = Non
     return miss
 
 
-def main(input_filename: Path) -> None:
+def main(input_filepath: Path) -> None:
     """
         Creates the cache eviction policies, calculates their misses, and writes them out into the desired format
     """
-    cache_capacity, requests = read_file(input_filename)
+    cache_capacity, requests = read_file(input_filepath)
 
     fifo_cache: fifo = fifo(cache_capacity)
     fifo_misses: int = get_cache_misses(fifo_cache, requests)
@@ -60,7 +60,7 @@ def main(input_filename: Path) -> None:
 
     # ./inputs/example1.in --> ./outputs/example1.out
     output_dir: str = "./outputs/"
-    output_file_base_name: str = str(input_filename.stem)
+    output_file_base_name: str = str(input_filepath.stem)
     output_extension: str = ".out"
     output_file: Path = Path(output_dir + output_file_base_name + output_extension)
 
@@ -76,14 +76,13 @@ if __name__ == "__main__":
     parser: ArgumentParser = ArgumentParser(description="Script for comparing the number of misses for the FIFO, LRU, and OPTFF cache eviction policies.")
 
     parser.add_argument(
-        "filename",
+        "filepath",
         type=str,
-        help="The name of the input file to parse."
+        help="The filepath of the input file."
     )
 
     args = parser.parse_args()
-    input_dir: str = "./inputs/"
 
-    main(Path(input_dir + args.filename))
+    main(Path(args.filepath))
 
 
