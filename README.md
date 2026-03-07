@@ -12,6 +12,13 @@
 
 We did not use any package outside of Python's standard library, so there is no need for a new venv. To see the results from step 3, go to: ```outputs/example1.out```. You can also repeat step 3 with any of the other files in the `inputs/` directory, and view the results in the associated `outputs/` directory.
 
+To run unit tests for the eviction policies (test files found in `tests/`): 
+
+`python -m tests.{test_file}`
+
+For example, to run the testing suite for the OPTFF eviction policy:
+
+`python -m tests.test_optff`
 
 #### Note about our implementation:
 Example input files are generated using a gaussian distribution to simulate real cache querying.
